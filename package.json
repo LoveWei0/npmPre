@@ -1,7 +1,7 @@
 {
 	"name": "npmpre",
-	"version": "2.0.0",
-	"description": "",
+	"version": "2.0.1",
+	"description": "version update",
 	"main": "lib/index.js",
 	"module": "lib/index.esm.js",
 	"typings": "lib/index.d.js",
@@ -52,6 +52,7 @@
 	"dependencies": {
 		"@typescript-eslint/eslint-plugin": "2.13.0",
 		"@typescript-eslint/parser": "2.13.0",
+		"grunt-bump": "^0.8.0",
 		"lodash": "4.17.15",
 		"rollup-plugin-node-resolve": "5.2.0"
 	},
