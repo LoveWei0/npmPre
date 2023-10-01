@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1696491449345" clover="3.2.0">
-  <project timestamp="1696491449345" name="All files">
+<coverage generated="1696494710146" clover="3.2.0">
+  <project timestamp="1696494710146" name="All files">
     <metrics statements="14" coveredstatements="13" conditionals="7" coveredconditionals="6" methods="6" coveredmethods="6" elements="27" coveredelements="25" complexity="0" loc="14" ncloc="14" packages="1" files="2" classes="2"/>
     <file name="toUnicode.ts" path="E:\webPre\npmPre\src\toUnicode.ts">
       <metrics statements="8" coveredstatements="7" conditionals="3" coveredconditionals="2" methods="3" coveredmethods="3"/>

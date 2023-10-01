@@ -5,6 +5,7 @@
 
 ### Bug Fixes
 
+* 2.0.2 ([72a8290](https://github.com/LoveWei0/npmPre/commit/72a82904ecd87303773181210dc4f013086e50d8))
 * husky position ([1b026b9](https://github.com/LoveWei0/npmPre/commit/1b026b97bb7c401ad71710182ecb2c10c33caee7))
 
 

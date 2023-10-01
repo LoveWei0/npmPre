@@ -5,6 +5,7 @@
 	"main": "dist/index.js",
 	"module": "dist/index.esm.js",
 	"typings": "dist/index.d.js",
+	"types": "module",
 	"files": [
 		"lib",
 		"LICENSE",
@@ -71,7 +72,7 @@
 	},
 	"lint-staged": {
 		"*.{ts,js}": [
-			"eslint --fix"
+			"eslint"
 		]
 	}
 }

@@ -36,8 +36,8 @@ function publish() {
 		`"version": "${newVersion}"`,
 		targetFile
 	)
-	shelljs.exec('npm run build')
-	shelljs.exec('npm publish')
+	shelljs.exec('pnpm build')
+	shelljs.exec('pnpm publish')
 }
 
 publish()
