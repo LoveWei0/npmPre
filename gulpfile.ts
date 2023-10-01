@@ -8,6 +8,7 @@ import {
 	ExtractorConfig,
 	ExtractorResult,
 } from '@microsoft/api-extractor'
+import { series } from 'gulp'
 
 interface TaskFunc {
 	(cb: Function): void
@@ -95,3 +96,16 @@ const apiExtractorGenerate: TaskFunc = async (cb) => {
 		)
 	}
 }
+
+// 完成
+const complete: TaskFunc = (cb) => {
+	log.progress('-----end------')
+	cb()
+}
+
+export const build = series(
+	clearLibFile,
+	buildByRollup,
+	apiExtractorGenerate,
+	complete
+)
