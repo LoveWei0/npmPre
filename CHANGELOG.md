@@ -1,6 +1,6 @@
 # 工具库更新日志
 
-# 1.0.0 (2023-10-01)
+# [2.0.0](https://github.com/LoveWei0/npmPre/compare/2859a3439fb54dc48c0b500eb1d58ce21778347f...v2.0.0) (2023-10-01)
 
 
 ### Bug Fixes
@@ -10,6 +10,7 @@
 
 ### Features
 
+* code standard and script write ([36c3dd9](https://github.com/LoveWei0/npmPre/commit/36c3dd94850457a236123c54e0afd33f979bb7de))
 * commit 配置 @microsoft/api-extractor ([2859a34](https://github.com/LoveWei0/npmPre/commit/2859a3439fb54dc48c0b500eb1d58ce21778347f))
 * Deleted lib ([3cb74e5](https://github.com/LoveWei0/npmPre/commit/3cb74e59f1a4dfc36da58fde8b98967263168e57))
 * feature fulfill ([a3ce204](https://github.com/LoveWei0/npmPre/commit/a3ce204fdd9f9c1b1dc3be91071a9185b3ea98cd))
