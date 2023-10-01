@@ -1,7 +1,11 @@
 const eslintrc = {
 	parser: '@typescript-eslint/parser',
-	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-	plugins: ['@typescript-eslint'],
+	extends: [
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:jest/recommended',
+	],
+	plugins: ['@typescript-eslint', 'jest'],
 	env: {
 		browser: true,
 		node: true,
@@ -41,9 +45,7 @@ const eslintrc = {
 			{
 				delimiter: 'none',
 			},
-		], // 成员分隔符
-		'@typescript-eslint/semi': ['error', 'never'],
-
+		],
 		'space-infix-ops': ['error'],
 		'comma-dangle': [
 			'error',

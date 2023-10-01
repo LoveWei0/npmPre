@@ -5,19 +5,24 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint --ext .js,.ts ./src",
-		"lint:fix": "eslint --fix --ext .js,.ts ./src"
+		"lint:fix": "eslint --fix --ext .js,.ts ./src",
+		"test": "jest --coverage --verbose -u"
 	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"@babel/core": "^7.23.0",
 		"@babel/preset-env": "7.7.7",
+		"@types/jest": "^29.5.5",
 		"eslint": "6.8.0",
+		"eslint-plugin-jest": "23.1.1",
+		"jest": "24.9.0",
 		"rollup": "1.27.14",
 		"rollup-plugin-babel": "4.3.3",
 		"rollup-plugin-commonjs": "10.1.0",
 		"rollup-plugin-eslint": "7.0.0",
 		"rollup-plugin-typescript2": "0.25.3",
+		"ts-jest": "24.2.0",
 		"typescript": "3.7.4"
 	},
 	"dependencies": {
