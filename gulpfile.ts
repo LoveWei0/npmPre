@@ -1,22 +1,17 @@
+import { series } from 'gulp'
+import path from 'path'
 import fse from 'fs-extra'
 import chalk from 'chalk'
-import path from 'path'
-import rollupConfig from './rollup.config'
 import { rollup } from 'rollup'
 import {
 	Extractor,
 	ExtractorConfig,
 	ExtractorResult,
 } from '@microsoft/api-extractor'
-import { series } from 'gulp'
+import rollupConfig from './rollup.config'
 
 interface TaskFunc {
 	(cb: Function): void
-}
-
-const paths = {
-	lib: path.join(__dirname, '/'),
-	root: path.join(__dirname, '/lib'),
 }
 
 const log = {
@@ -28,23 +23,28 @@ const log = {
 	},
 }
 
-// 删除lib文件
+const paths = {
+	root: path.join(__dirname, '/'),
+	lib: path.join(__dirname, '/lib'),
+}
+
+// 删除 lib 文件
 const clearLibFile: TaskFunc = async (cb) => {
 	fse.removeSync(paths.lib)
 	log.progress('Deleted lib file')
 	cb()
 }
 
-// rollup打包
+// rollup 打包
 const buildByRollup: TaskFunc = async (cb) => {
 	const inputOptions = {
 		input: rollupConfig.input,
-		external: rollupConfig.external,
 		plugins: rollupConfig.plugins,
 	}
-	const outOptions = rollupConfig.output
+	const outOptions: any = rollupConfig.output
 	const bundle = await rollup(inputOptions)
-	// 写入需要遍历输入配置
+
+	// 写入需要遍历输出配置
 	if (Array.isArray(outOptions)) {
 		outOptions.forEach(async (outOption) => {
 			await bundle.write(outOption)
@@ -54,33 +54,37 @@ const buildByRollup: TaskFunc = async (cb) => {
 	}
 }
 
-// api-extractor 合并.d.ts文件
+// api-extractor 整理 .d.ts 文件
 const apiExtractorGenerate: TaskFunc = async (cb) => {
 	const apiExtractorJsonPath: string = path.join(
 		__dirname,
 		'./api-extractor.json'
 	)
-	// 解析api-extractor.json 文件
+	// 加载并解析 api-extractor.json 文件
 	const extractorConfig: ExtractorConfig =
 		await ExtractorConfig.loadFileAndPrepare(apiExtractorJsonPath)
-	// .d.ts文件是否存在
+	// 判断是否存在 index.d.ts 文件，这里必须异步先访问一边，不然后面找不到会报错
 	const isExist: boolean = await fse.pathExists(
 		extractorConfig.mainEntryPointFilePath
 	)
-	// 不存在
+
 	if (!isExist) {
 		log.error('API Extractor not find index.d.ts')
 		return
 	}
+
+	// 调用 API
 	const extractorResult: ExtractorResult = await Extractor.invoke(
 		extractorConfig,
 		{
 			localBuild: true,
-			showVerboseMessages: true, //输出中显示信息
+			// 在输出中显示信息
+			showVerboseMessages: true,
 		}
 	)
+
 	if (extractorResult.succeeded) {
-		// 去除多余.d.ts
+		// 删除多余的 .d.ts 文件
 		const libFiles: string[] = await fse.readdir(paths.lib)
 		libFiles.forEach(async (file) => {
 			if (file.endsWith('.d.ts') && !file.includes('index')) {
@@ -92,17 +96,21 @@ const apiExtractorGenerate: TaskFunc = async (cb) => {
 	} else {
 		log.error(
 			`API Extractor completed with ${extractorResult.errorCount} errors` +
-				`and ${extractorResult.warningCount} warnings`
+				` and ${extractorResult.warningCount} warnings`
 		)
 	}
 }
 
-// 完成
 const complete: TaskFunc = (cb) => {
-	log.progress('-----end------')
+	log.progress('---- end ----')
 	cb()
 }
 
+// 构建过程
+// 1. 删除 lib 文件夹
+// 2. rollup 打包
+// 3. api-extractor 生成统一的声明文件, 删除多余的声明文件
+// 4. 完成
 export const build = series(
 	clearLibFile,
 	buildByRollup,
