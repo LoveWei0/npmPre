@@ -19,7 +19,8 @@
 		"api": "api-extractor run",
 		"lint:fix": "eslint --fix --ext .js,.ts ./src",
 		"changelog": "gulp changelog",
-		"prepublishOnly": "yarn lint:fix & yarn lint & yarn test & yarn changelog & yarn build"
+		"prepublishOnly": "yarn lint:fix & yarn lint & yarn test & yarn changelog & yarn build",
+		"pub": "yarn publish"
 	},
 	"author": "",
 	"license": "ISC",
