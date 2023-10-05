@@ -1,6 +1,6 @@
 {
 	"name": "npmpre",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "version update",
 	"main": "dist/index.js",
 	"module": "dist/index.esm.js",

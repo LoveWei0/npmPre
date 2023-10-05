@@ -1,5 +1,19 @@
 # 工具库更新日志
 
+## [2.0.2](https://github.com/LoveWei0/npmPre/compare/2.0.1...2.0.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* husky position ([1b026b9](https://github.com/LoveWei0/npmPre/commit/1b026b97bb7c401ad71710182ecb2c10c33caee7))
+
+
+### Features
+
+* menu feature ([0061c60](https://github.com/LoveWei0/npmPre/commit/0061c60d36281544f8687512913f8df426d75895))
+
+
+
 ## [2.0.1](https://github.com/LoveWei0/npmPre/compare/v2.0.0...2.0.1) (2023-10-02)
 
 
