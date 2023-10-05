@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1696484947705" clover="3.2.0">
-  <project timestamp="1696484947706" name="All files">
+<coverage generated="1696485449313" clover="3.2.0">
+  <project timestamp="1696485449313" name="All files">
     <metrics statements="12" coveredstatements="12" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6" elements="22" coveredelements="22" complexity="0" loc="12" ncloc="12" packages="1" files="3" classes="3"/>
     <file name="add.ts" path="E:\webPre\npmPre\src\add.ts">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>

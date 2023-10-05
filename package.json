@@ -21,6 +21,7 @@
 		"changelog": "gulp changelog",
 		"prepublishOnly": "yarn lint:fix & yarn lint & yarn test & yarn changelog & yarn build",
 		"pub": "yarn publish",
+		"release": "yarn test && yarn build && np --no-cleanup --yolo --any-branch",
 		"prepare": "husky install"
 	},
 	"author": "",
@@ -65,8 +66,7 @@
 	},
 	"lint-staged": {
 		"*.{.ts,.js}": [
-			"eslint",
-			"git add"
+			"eslint"
 		]
 	}
 }
