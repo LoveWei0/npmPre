@@ -11,6 +11,12 @@
 		"CHANGELOG.md",
 		"README.md"
 	],
+	"keywords": [
+		"typescript",
+		"npmpre",
+		"utils"
+	],
+	"author": "lovewei0",
 	"sideEffects": "false",
 	"scripts": {
 		"lint": "eslint --ext .js,.ts ./src",
@@ -24,7 +30,6 @@
 		"release": "yarn test && yarn build && np --no-cleanup --yolo --any-branch",
 		"prepare": "husky install"
 	},
-	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"@babel/core": "^7.23.0",
