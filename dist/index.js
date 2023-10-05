@@ -37,164 +37,52 @@ function isString(value) {
   return getTag(value) === '[object String]';
 }
 
-function getDefaultExportFromCjs (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
-
-var slicedToArray = {exports: {}};
-
-var arrayWithHoles = {exports: {}};
-
-(function (module) {
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-module.exports = _arrayWithHoles;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-}(arrayWithHoles));
-
-var iterableToArrayLimit = {exports: {}};
-
-(function (module) {
-function _iterableToArrayLimit(arr, i) {
-  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-
-  if (_i == null) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-
-  var _s, _e;
-
-  try {
-    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
+/**
+ * 获取字符串指定下标的 unicode
+ *
+ * @param str - 字符串
+ * @param index - unicode 的下标
+ * @returns data
+ *
+ * @example
+ * ```ts
+ * unicodeAt('ABC', 1) // -> '\\u0042'
+ * ```
+ *
+ * @beta
+ */
+function toUnicodeAt(str) {
+  var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var code = str.charCodeAt(index).toString(16).toUpperCase();
+  while (code.length < 4) {
+    code = "0".concat(code);
   }
-
-  return _arr;
+  return "\\u".concat(code);
 }
-
-module.exports = _iterableToArrayLimit;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-}(iterableToArrayLimit));
-
-var unsupportedIterableToArray = {exports: {}};
-
-var arrayLikeToArray = {exports: {}};
-
-(function (module) {
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
+/**
+ * 获取字符串的 unicode
+ *
+ * @param str - 字符串
+ * @returns data
+ *
+ * @example
+ * ```ts
+ * toUnicode('ABC', 1) // -> '\\u0041\\u0042\\u0043'
+ * ```
+ *
+ * @beta
+ */
+function toUnicode(str) {
+  if (!str) {
+    return '';
   }
-
-  return arr2;
+  return Array.prototype.reduce.call(str, function (pre, cur, index) {
+    return "".concat(pre).concat(toUnicodeAt(str, index));
+  }, '');
 }
 
-module.exports = _arrayLikeToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-}(arrayLikeToArray));
-
-(function (module) {
-var arrayLikeToArray$1 = arrayLikeToArray.exports;
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray$1(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray$1(o, minLen);
-}
-
-module.exports = _unsupportedIterableToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-}(unsupportedIterableToArray));
-
-var nonIterableRest = {exports: {}};
-
-(function (module) {
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableRest;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-}(nonIterableRest));
-
-(function (module) {
-var arrayWithHoles$1 = arrayWithHoles.exports;
-
-var iterableToArrayLimit$1 = iterableToArrayLimit.exports;
-
-var unsupportedIterableToArray$1 = unsupportedIterableToArray.exports;
-
-var nonIterableRest$1 = nonIterableRest.exports;
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles$1(arr) || iterableToArrayLimit$1(arr, i) || unsupportedIterableToArray$1(arr, i) || nonIterableRest$1();
-}
-
-module.exports = _slicedToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-}(slicedToArray));
-
-var _slicedToArray = /*@__PURE__*/getDefaultExportFromCjs(slicedToArray.exports);
-
-function EnumData(data) {
-  var keyMap = {};
-  var valueMap = {};
-  data.forEach(function (_ref) {
-    var _ref2 = _slicedToArray(_ref, 3),
-      key = _ref2[0],
-      value = _ref2[1],
-      text = _ref2[2];
-    keyMap[key] = value;
-    valueMap[value] = text;
-  });
-  var ans = new Proxy(data, {
-    get: function get(target, propKey) {
-      if (keyMap.hasOwnProperty(propKey)) {
-        return keyMap[propKey];
-      }
-      if (valueMap.hasOwnProperty(propKey)) {
-        return valueMap[propKey];
-      }
-      // 除了可以使用 Array 的方法外，也应该允许使用 Object 上的方法
-      // 用 in 可以获取到继承对象的属性，而 hasOwnProperty 不能
-      if (propKey in Array.prototype) {
-        if (typeof Array.prototype[propKey] === 'function') {
-          return Array.prototype[propKey].bind(target);
-        }
-        return target[propKey];
-      }
-      return '';
-    },
-    set: function set() {
-      // eslint-disable-next-line no-console
-      console.warn('Don’t allow assignment to constant variable');
-      return false;
-    }
-  });
-  return ans;
-}
-
-exports.EnumData = EnumData;
 exports.getTag = getTag;
 exports.isNumber = isNumber;
 exports.isString = isString;
+exports.toUnicode = toUnicode;
+exports.toUnicodeAt = toUnicodeAt;

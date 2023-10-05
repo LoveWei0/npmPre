@@ -65,8 +65,8 @@
 		"rollup-plugin-node-resolve": "5.2.0"
 	},
 	"lint-staged": {
-		"*.{.ts,.js}": [
-			"eslint"
+		"*.{ts,js}": [
+			"eslint --fix"
 		]
 	}
 }
