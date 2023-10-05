@@ -1,3 +1,2 @@
-export * from './hello'
-export * from './add'
 export * from './type'
+export * from './EnumData'
