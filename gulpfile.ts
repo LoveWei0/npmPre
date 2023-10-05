@@ -26,13 +26,13 @@ const log = {
 
 const paths = {
 	root: path.join(__dirname, '/'),
-	lib: path.join(__dirname, '/lib'),
+	dist: path.join(__dirname, '/dist'),
 }
 
 // 删除 lib 文件
 const clearLibFile: TaskFunc = async (cb) => {
-	fse.removeSync(paths.lib)
-	log.progress('Deleted lib file')
+	fse.removeSync(paths.dist)
+	log.progress('Deleted dist file')
 	cb()
 }
 
@@ -86,10 +86,10 @@ const apiExtractorGenerate: TaskFunc = async (cb) => {
 
 	if (extractorResult.succeeded) {
 		// 删除多余的 .d.ts 文件
-		const libFiles: string[] = await fse.readdir(paths.lib)
+		const libFiles: string[] = await fse.readdir(paths.dist)
 		libFiles.forEach(async (file) => {
 			if (file.endsWith('.d.ts') && !file.includes('index')) {
-				await fse.remove(path.join(paths.lib, file))
+				await fse.remove(path.join(paths.dist, file))
 			}
 		})
 		log.progress('API Extractor completed successfully')
