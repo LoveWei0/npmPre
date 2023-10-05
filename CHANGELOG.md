@@ -1,5 +1,15 @@
 # 工具库更新日志
 
+## [2.0.1](https://github.com/LoveWei0/npmPre/compare/v2.0.0...2.0.1) (2023-10-02)
+
+
+### Features
+
+* fulfill type file ([947ce92](https://github.com/LoveWei0/npmPre/commit/947ce9229a8d76ca80db7749e96d5d1dbf7c1751))
+* npm publish-one ([bb2ec38](https://github.com/LoveWei0/npmPre/commit/bb2ec38135ace566db09a83ad7ae1552ad7db514))
+
+
+
 # [2.0.0](https://github.com/LoveWei0/npmPre/compare/2859a3439fb54dc48c0b500eb1d58ce21778347f...v2.0.0) (2023-10-01)
 
 

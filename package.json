@@ -20,7 +20,8 @@
 		"lint:fix": "eslint --fix --ext .js,.ts ./src",
 		"changelog": "gulp changelog",
 		"prepublishOnly": "yarn lint:fix & yarn lint & yarn test & yarn changelog & yarn build",
-		"pub": "yarn publish"
+		"pub": "yarn publish",
+		"prepare": "husky install"
 	},
 	"author": "",
 	"license": "ISC",
@@ -56,11 +57,6 @@
 		"@typescript-eslint/parser": "2.13.0",
 		"lodash": "4.17.15",
 		"rollup-plugin-node-resolve": "5.2.0"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged & jest -u"
-		}
 	},
 	"lint-staged": {
 		"*.{.ts,.js}": [
